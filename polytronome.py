@@ -16,10 +16,18 @@ deltaTime = 0
 clock = pygame.time.Clock()
 running = True
 
+sounds = (
+    pygame.mixer.Sound("audio/accent_click.wav"),
+    pygame.mixer.Sound("audio/click.wav"),
+)
+
 
 # Polytronome Objects
-test = ptObject.PolytronomeObject(screen, 100, 5, (000, 200, 100), 4, 100)
-test2 = ptObject.PolytronomeObject(screen, 100, 5, (200, 000, 100), 3, 100 * 3 / 4)
+test = ptObject.PolytronomeObject(screen, sounds, 100, 5, (000, 200, 100), 4, 100)
+
+test2 = ptObject.PolytronomeObject(
+    screen, sounds, 100, 5, (200, 000, 100), 3, 100 * 3 / 4
+)
 
 
 while running:

@@ -18,8 +18,18 @@ def generate_poligon_verts(offset, sides, radius):
 
 
 class PolytronomeObject:
-    def __init__(self, screen, radius, width, color, time_signature, bpm):
+    def __init__(
+        self,
+        screen,
+        sounds: tuple[pygame.mixer.Sound],
+        radius,
+        width,
+        color,
+        time_signature,
+        bpm,
+    ):
         self.screen = screen
+        self.sounds = sounds
 
         self.radius = radius
         self.width = width
@@ -63,9 +73,13 @@ class PolytronomeObject:
         if self.cspb > self.spb:
             self.cspb -= self.spb
             self.current_beat += 1
-        # fuck! I've
+            self.sounds[1].play()
+
+        # fuck! I've been here 1 hour.
+
         if self.current_beat >= len(self.verices):
             self.current_beat = 0
+            self.sounds[0].play()
 
         a = self.verices[self.current_beat - 1]
         b = self.verices[self.current_beat]
