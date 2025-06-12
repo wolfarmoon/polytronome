@@ -19,7 +19,7 @@ running = True
 
 # Polytronome Objects
 test = ptObject.PolytronomeObject(screen, 100, 5, (000, 200, 100), 4, 100)
-test2 = ptObject.PolytronomeObject(screen, 100, 5, (200, 000, 100), 5, 100 * 5 / 4)
+test2 = ptObject.PolytronomeObject(screen, 100, 5, (200, 000, 100), 3, 100 * 3 / 4)
 
 
 while running:
