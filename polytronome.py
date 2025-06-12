@@ -1,8 +1,5 @@
-import datetime
 import gc
 import pygame
-import math
-import time
 import sys
 import ptObject
 

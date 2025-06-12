@@ -7,3 +7,6 @@ This is my Code in Place 2025 final project: An idea that have been bouncing aro
 
 ## What it does
 Polytronome allow to stack several metronomes in different time signatures—but in time sync—generating polyrhythms. 
+
+## The future
+You will be able to select, add or remove metronomes. By now, they are hard coded (sorry, school).
