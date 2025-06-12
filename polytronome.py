@@ -23,23 +23,32 @@ sounds = (
 
 
 # Polytronome Objects
-test = ptObject.PolytronomeObject(screen, sounds, 100, 5, (000, 200, 100), 4, 100)
+bmp = 80
+sig = 3
 
+test = ptObject.PolytronomeObject(screen, sounds, 100, 5, (000, 200, 100), sig, bmp)
+n = 15
 test2 = ptObject.PolytronomeObject(
-    screen, sounds, 100, 5, (200, 000, 100), 3, 100 * 3 / 4
+    screen, sounds, 100, 5, (200, 000, 100), n, bmp * n / sig
 )
-
+n2 = 5
+test3 = ptObject.PolytronomeObject(
+    screen, sounds, 100, 5, (000, 000, 200), n2, bmp * (n2 / sig)
+)
 
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
-    screen.fill((000, 000, 000))
+    screen.fill((20, 20, 40))
     test.tick(deltaTime)
     test2.tick(deltaTime)
+    test3.tick(deltaTime)
+
     test.draw()
     test2.draw()
+    test3.draw()
 
     # Here the code may lay.
 
