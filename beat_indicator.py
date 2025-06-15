@@ -32,6 +32,7 @@ class BeatIndicator:
 
     def update(self, points, completeness):
         self.pos = interpolatePoints(points[0], points[1], completeness)
+        
 
     def draw(self):
         pygame.draw.circle(self.screen, self.color, self.pos, self.width * 2)

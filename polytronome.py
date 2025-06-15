@@ -23,7 +23,7 @@ sounds = (
 
 
 # Polytronome Objects
-bmp = 80
+bmp = 60
 sig = 3
 
 test = ptObject.PolytronomeObject(screen, sounds, 100, 5, (000, 200, 100), sig, bmp)
@@ -31,7 +31,7 @@ n = 15
 test2 = ptObject.PolytronomeObject(
     screen, sounds, 100, 5, (200, 000, 100), n, bmp * n / sig
 )
-n2 = 5
+n2 = 4
 test3 = ptObject.PolytronomeObject(
     screen, sounds, 100, 5, (000, 000, 200), n2, bmp * (n2 / sig)
 )
@@ -43,11 +43,11 @@ while running:
 
     screen.fill((20, 20, 40))
     test.tick(deltaTime)
-    test2.tick(deltaTime)
+    #test2.tick(deltaTime)
     test3.tick(deltaTime)
 
     test.draw()
-    test2.draw()
+    #test2.draw()
     test3.draw()
 
     # Here the code may lay.

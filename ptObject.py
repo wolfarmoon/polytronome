@@ -3,9 +3,9 @@ import math
 import beat_indicator
 
 
-def generate_poligon_verts(offset, sides, radius):
-    x = offset[0]
-    y = offset[1]
+def generate_poligon_verts(center, sides, radius):
+    x = center[0]
+    y = center[1]
 
     vertices = []
 
@@ -35,13 +35,14 @@ class PolytronomeObject:
         self.width = width
         self.pt_color = color
         self.time_signature = time_signature
-        self.spb = 60 / bpm
+        # Seconds per beat
+        self.base_spb = 60 / bpm
 
-        self.cspb = 0
+        self.current_spb = 0
 
         self.current_beat = 1
 
-        self.verices = generate_poligon_verts(
+        self.vertices = generate_poligon_verts(
             [
                 pygame.display.get_window_size()[0] / 2,
                 pygame.display.get_window_size()[1] / 2,
@@ -50,40 +51,36 @@ class PolytronomeObject:
             100,
         )
 
-        self.beat_in = beat_indicator.BeatIndicator(screen, width, color)
+        self.beat_indicator = beat_indicator.BeatIndicator(screen, width, color)
 
     def draw(self):
         # Draw the base shape
         pygame.draw.polygon(
             self.screen,
             self.pt_color,
-            self.verices,
+            self.vertices,
             self.width,
         )
 
-        self.beat_in.draw()
+        self.beat_indicator.draw()
 
-        # Draw the point
-        # I may use a linear function to make it seem to move along the sides.
-        # it will move from A to B, depending the shape, may move from vert1 to vert2, vert2 to vert3, vert3 to vert1
+    def update(self, dt):
+        self.current_spb += dt
 
-    def tick(self, dt):
-        self.cspb += dt
-
-        if self.cspb > self.spb:
-            self.cspb -= self.spb
+        if self.current_spb > self.base_spb:
+            self.current_spb -= self.base_spb
             self.current_beat += 1
             self.sounds[1].play()
 
         # fuck! I've been here 1 hour.
 
-        if self.current_beat >= len(self.verices):
+        if self.current_beat >= len(self.vertices):
             self.current_beat = 0
             self.sounds[0].play()
 
-        a = self.verices[self.current_beat - 1]
-        b = self.verices[self.current_beat]
+        a = self.vertices[self.current_beat - 1]
+        b = self.vertices[self.current_beat]
 
-        t = self.cspb / self.spb
+        t = self.current_spb / self.base_spb
 
-        self.beat_in.update([a, b], t)
+        self.beat_indicator.update([a, b], t)
